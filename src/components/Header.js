@@ -30,9 +30,9 @@ export default class Header extends Component {
     return (
       <div data-testid="header-component">
         <h1 data-testid="header-user-name">{userInfo?.name}</h1>
-        <Link to="/search" data-testid="link-to-search" />
-        <Link to="/favorites" data-testid="link-to-favorites" />
-        <Link to="/profile" data-testid="link-to-profile" />
+        <Link to="/search" data-testid="link-to-search">Search</Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
       </div>
     );
   }
