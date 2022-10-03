@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carregando from '../services/Carregando';
-import { createUser } from '../services/userAPI';
+import { createUser, getUser } from '../services/userAPI';
 
 const obj = {
   nameLogin: '',
