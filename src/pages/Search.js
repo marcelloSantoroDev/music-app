@@ -6,6 +6,7 @@ import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 const obj = {
   searchValue: '',
+  searchCheck: '',
   searchButton: true,
   loading: false,
   responseValue: [],
@@ -24,18 +25,22 @@ export default class extends Component {
   };
 
   handleFetch = () => {
-    const { searchValue } = this.setState;
+    const { searchValue } = this.state;
     this.setState({ loading: true, flag: true }, async () => {
       const responseAPI = await searchAlbumsAPI(searchValue);
-      console.log(responseAPI);
-      this.setState({ responseValue: responseAPI }, () => {
-        this.setState({ loading: false });
+      // console.log(responseAPI);
+      this.setState({
+        responseValue: responseAPI,
+        searchCheck: searchValue,
+        loading: false }, () => {
+        this.setState({ searchValue: '' });
       });
     });
   };
 
   render() {
-    const { searchValue, searchButton, loading, responseValue, flag } = this.state;
+    const {
+      searchValue, searchButton, loading, responseValue, flag, searchCheck } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -52,7 +57,7 @@ export default class extends Component {
             type="button"
             data-testid="search-artist-button"
             disabled={ searchButton }
-            onClick={ this.handleFetch } // => função recebe uma string com o nome da banda
+            onClick={ this.handleFetch }
           >
             Pesquisar
 
@@ -63,7 +68,7 @@ export default class extends Component {
           <p>
             Resultado de álbuns de:
             {' '}
-            {searchValue}
+            {searchCheck}
           </p>
         )}
         {(responseValue.length === 0 && flag) ? (
