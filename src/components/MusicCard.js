@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carregando from '../services/Carregando';
 import { addSong } from '../services/favoriteSongsAPI';
-// import { addSong } from '../services/favoriteSongsAPI';
 
 const obj = {
   loading: false,
@@ -44,7 +43,7 @@ export default class MusicCard extends Component {
             data-testid={ `checkbox-music-${trackId}` }
             onClick={ this.handleFetch }
             id="Favorita"
-            checked={ checkInput }
+            defaultChecked={ checkInput }
           />
         </label>
       </li>
@@ -56,5 +55,5 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
-  checkInput: PropTypes.bool.isRequired,
+  // checkInput: PropTypes.bool.isRequired,
 };
