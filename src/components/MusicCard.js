@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carregando from '../services/Carregando';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 const obj = {
   loading: false,
@@ -11,10 +11,28 @@ const obj = {
 export default class MusicCard extends Component {
   state = { ...obj };
 
+  componentDidMount() {
+    this.handleFavorites();
+  }
+
   handleFetch = () => {
     this.setState({ loading: true }, async () => {
       await addSong(this.props);
       this.setState({ loading: false, checkInput: true });
+    });
+  };
+
+  handleFavorites = () => {
+    const prop = this.props;
+    this.setState({ loading: true }, async () => {
+      const favorites = await getFavoriteSongs();
+      this.setState({ loading: false });
+      const test = favorites.some((element) => element.trackId === prop.trackId);
+      if (test) {
+        this.setState({ checkInput: true });
+      } else {
+        this.setState({ checkInput: false });
+      }
     });
   };
 
@@ -55,5 +73,4 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
-  // checkInput: PropTypes.bool.isRequired,
 };
