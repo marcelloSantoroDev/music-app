@@ -1,15 +1,20 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import Carregando from '../services/Carregando';
 // import Carregando from '../services/Carregando';
-import { getUser } from '../services/userAPI';
+import { getUser, updateUser } from '../services/userAPI';
 
 const obj = {
-  user: {},
-  loading: true,
+  name: '',
+  email: '',
+  image: '',
+  description: '',
+  loading: false,
   disable: true,
 };
 
-export default class extends Component {
+export default class ProfileEdit extends Component {
   state = { ...obj };
 
   componentDidMount() {
@@ -18,23 +23,50 @@ export default class extends Component {
 
   handleFetch = async () => {
     const getUserInfo = await getUser();
-    // await getUser();
-    this.setState({ user: { ...getUserInfo } });
+    const { name, email, description, image } = getUserInfo;
+    this.setState({
+      name,
+      email,
+      description,
+      image,
+    }, this.validations);
+  };
+
+  validations = () => {
+    const { name, email, description, image } = this.state;
+    const regex = /\S+@\S+\.\S+/;
+    const emailValidation = regex.test(email);
+    if (name.length > 0
+      && description.length > 0
+      && image.length > 0
+      && emailValidation) {
+      this.setState({ disable: false });
+    } else {
+      this.setState({ disable: true });
+    }
   };
 
   onInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-      disable: (value.length > 0),
-    });
+    }, this.validations);
+  };
+
+  handleClick = async () => {
+    const { name, email, image, description } = this.state;
+    const { history } = this.props;
+    const newObj = { name, email, image, description };
+    this.setState({ loading: true });
+    await updateUser({ ...newObj });
+    history.push('/profile');
   };
 
   render() {
-    const { disable, user } = this.state;
-    // if (loading) {
-    //   return <Carregando />;
-    // }
+    const { disable, name, email, description, image, loading } = this.state;
+    if (loading) {
+      return <Carregando />;
+    }
     return (
       <div data-testid="page-profile-edit">
         <Header />
@@ -43,30 +75,35 @@ export default class extends Component {
             type="text"
             data-testid="edit-input-name"
             onChange={ this.onInputChange }
-            value={ user.name }
+            value={ name }
+            name="name"
           />
           <input
             type="text"
             data-testid="edit-input-email"
             onChange={ this.onInputChange }
-            value={ user.email }
+            value={ email }
+            name="email"
           />
           <input
             type="text"
             data-testid="edit-input-description"
             onChange={ this.onInputChange }
-            value={ user.description }
+            value={ description }
+            name="description"
           />
           <input
             type="text"
             data-testid="edit-input-image"
             onChange={ this.onInputChange }
-            value={ user.image }
+            value={ image }
+            name="image"
           />
           <button
             type="button"
             data-testid="edit-button-save"
             disabled={ disable }
+            onClick={ this.handleClick }
           >
             Salvar
 
@@ -76,3 +113,9 @@ export default class extends Component {
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
