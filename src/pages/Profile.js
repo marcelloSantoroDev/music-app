@@ -18,7 +18,7 @@ export default class extends Component {
 
   handleFetch = async () => {
     const getUserInfo = await getUser();
-    this.setState({ user: { ...getUserInfo }, loading: false });
+    this.setState({ user: { ...getUserInfo } });
   };
 
   render() {

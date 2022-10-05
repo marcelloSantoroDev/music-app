@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import Carregando from '../services/Carregando';
-import { getUser } from '../services/userAPI';
+// import Carregando from '../services/Carregando';
+// import { getUser } from '../services/userAPI';
 
 const obj = {
   user: {},
@@ -17,8 +17,8 @@ export default class extends Component {
   }
 
   handleFetch = async () => {
-    const getUserInfo = await getUser();
-    this.setState({ user: { ...getUserInfo }, loading: false });
+    // const getUserInfo = await getUser();
+    // this.setState({ user: { ...getUserInfo }, loading: false });
   };
 
   onInputChange = (event) => {
@@ -30,7 +30,7 @@ export default class extends Component {
   };
 
   render() {
-    const { loading, disable, user } = this.state;
+    const { disable } = this.state;
     // if (loading) {
     //   return <Carregando />;
     // }
