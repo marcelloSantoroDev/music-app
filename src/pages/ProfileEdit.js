@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 // import Carregando from '../services/Carregando';
-// import { getUser } from '../services/userAPI';
+import { getUser } from '../services/userAPI';
 
 const obj = {
   user: {},
@@ -17,8 +17,9 @@ export default class extends Component {
   }
 
   handleFetch = async () => {
-    // const getUserInfo = await getUser();
-    // this.setState({ user: { ...getUserInfo }, loading: false });
+    const getUserInfo = await getUser();
+    // await getUser();
+    this.setState({ user: { ...getUserInfo } });
   };
 
   onInputChange = (event) => {
@@ -30,7 +31,7 @@ export default class extends Component {
   };
 
   render() {
-    const { disable } = this.state;
+    const { disable, user } = this.state;
     // if (loading) {
     //   return <Carregando />;
     // }
@@ -42,21 +43,25 @@ export default class extends Component {
             type="text"
             data-testid="edit-input-name"
             onChange={ this.onInputChange }
+            value={ user.name }
           />
           <input
             type="text"
             data-testid="edit-input-email"
             onChange={ this.onInputChange }
+            value={ user.email }
           />
           <input
             type="text"
             data-testid="edit-input-description"
             onChange={ this.onInputChange }
+            value={ user.description }
           />
           <input
             type="text"
             data-testid="edit-input-image"
             onChange={ this.onInputChange }
+            value={ user.image }
           />
           <button
             type="button"
