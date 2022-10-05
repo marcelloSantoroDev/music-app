@@ -23,6 +23,12 @@ export default class Album extends Component {
     this.setState({ artistResponse: response, loading: false });
   };
 
+  handleFavoriteFetch = async () => {
+    this.setState({
+      loading: false,
+    });
+  };
+
   render() {
     const { artistResponse, loading } = this.state;
     if (loading) {
@@ -35,7 +41,11 @@ export default class Album extends Component {
         <h2 data-testid="album-name">{artistResponse[0].collectionName}</h2>
         {artistResponse
           .filter((element) => element.trackName !== undefined)
-          .map((arg) => <MusicCard key={ arg.trackId } object={ arg } />)}
+          .map((arg) => (<MusicCard
+            key={ arg.trackId }
+            object={ arg }
+            handleFavoriteFetch={ this.handleFavoriteFetch }
+          />))}
       </div>
     );
   }
