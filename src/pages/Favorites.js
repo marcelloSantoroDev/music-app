@@ -18,7 +18,6 @@ export default class extends Component {
 
   handleFetch = async () => {
     const getFavs = await getFavoriteSongs();
-    console.log(getFavs);
     this.setState({
       favorites: [...getFavs],
       loading: false,
@@ -33,7 +32,8 @@ export default class extends Component {
     return (
       <div data-testid="page-favorites">
         <Header />
-        {favorites.map((element, index) => <MusicCard key={ index } { ...element } />)}
+        {favorites
+          .map((element) => <MusicCard key={ element.trackId } { ...element } />)}
       </div>
     );
   }
