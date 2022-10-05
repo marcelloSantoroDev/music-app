@@ -35,7 +35,7 @@ export default class Album extends Component {
         <h2 data-testid="album-name">{artistResponse[0].collectionName}</h2>
         {artistResponse
           .filter((element) => element.trackName !== undefined)
-          .map((arg) => <MusicCard key={ arg.trackId } { ...arg } />)}
+          .map((arg) => <MusicCard key={ arg.trackId } object={ arg } />)}
       </div>
     );
   }

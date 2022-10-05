@@ -17,24 +17,25 @@ export default class MusicCard extends Component {
 
   handleFetch = async () => {
     const { checkInput } = this.state;
+    const { object, handleFavoriteFetch } = this.props;
     if (checkInput) {
       this.setState({ loading: true });
-      await removeSong(this.props);
+      await removeSong(object).then(handleFavoriteFetch());
       this.setState({ checkInput: false, loading: false });
     } else {
       this.setState({ loading: true }, async () => {
-        await addSong(this.props);
+        await addSong(object);
         this.setState({ loading: false, checkInput: true });
       });
     }
   };
 
   handleFavorites = () => {
-    const prop = this.props;
+    const { object } = this.props;
     this.setState({ loading: true }, async () => {
       const favorites = await getFavoriteSongs();
       this.setState({ loading: false });
-      const test = favorites.some((element) => element.trackId === prop.trackId);
+      const test = favorites.some((element) => element.trackId === object.trackId);
       if (test) {
         this.setState({ checkInput: true });
       } else {
@@ -44,7 +45,8 @@ export default class MusicCard extends Component {
   };
 
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
+    const { object } = this.props;
+    const { trackName, previewUrl, trackId } = object;
     const { loading, checkInput } = this.state;
     if (loading) {
       return <Carregando />;
@@ -77,7 +79,10 @@ export default class MusicCard extends Component {
 }
 
 MusicCard.propTypes = {
-  trackName: PropTypes.string.isRequired,
-  previewUrl: PropTypes.string.isRequired,
-  trackId: PropTypes.number.isRequired,
+  handleFavoriteFetch: PropTypes.func.isRequired,
+  object: PropTypes.shape({
+    previewUrl: PropTypes.string,
+    trackId: PropTypes.string,
+    trackName: PropTypes.number,
+  }).isRequired,
 };
