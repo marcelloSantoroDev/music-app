@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carregando from '../services/Carregando';
 import { createUser } from '../services/userAPI';
+import './Login.css';
+import logoImg from '../imgs/logo.png';
 
 const obj = {
   nameLogin: '',
@@ -37,24 +39,29 @@ export default class Login extends Component {
       return <Carregando />;
     }
     return (
-      <div data-testid="page-login">
-        <input
-          type="text"
-          placeholder="Nome"
-          data-testid="login-name-input"
-          name="nameLogin"
-          value={ nameLogin }
-          onChange={ this.onInputChange }
-        />
-        <button
-          type="button"
-          data-testid="login-submit-button"
-          disabled={ buttonLogin }
-          onClick={ this.onEnterButton }
-        >
-          Entrar
+      <div data-testid="page-login" className="loginContainer">
+        <div className="input-button">
+          <img src={ logoImg } alt="logo" className="logoimg" />
+          <input
+            type="text"
+            placeholder="digite o seu nome"
+            data-testid="login-name-input"
+            name="nameLogin"
+            value={ nameLogin }
+            onChange={ this.onInputChange }
+            className="input"
+          />
+          <button
+            type="button"
+            data-testid="login-submit-button"
+            disabled={ buttonLogin }
+            onClick={ this.onEnterButton }
+            className="btn"
+          >
+            Entrar
 
-        </button>
+          </button>
+        </div>
       </div>
     );
   }
