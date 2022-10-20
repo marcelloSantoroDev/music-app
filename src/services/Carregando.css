@@ -6,8 +6,8 @@
 }
 .lds-ring div {
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border: 8px solid rgba(0, 213, 226, 1);
-  border-color: rgba(0, 213, 226, 1) transparent transparent;
+  border: 8px solid white;
+  border-color: white transparent transparent;
   border-radius: 50%;
   box-sizing: border-box;
   display: block;
