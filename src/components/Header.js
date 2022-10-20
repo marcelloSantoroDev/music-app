@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Carregando from '../services/Carregando';
 import { getUser } from '../services/userAPI';
+import './Header.css';
 
 const obj = {
   userInfo: '',
@@ -24,15 +25,39 @@ export default class Header extends Component {
 
   render() {
     const { userInfo, checkLoading } = this.state;
-    if (checkLoading) {
-      return <Carregando />;
-    }
     return (
-      <div data-testid="header-component">
-        <h1 data-testid="header-user-name">{userInfo?.name}</h1>
-        <Link to="/search" data-testid="link-to-search">Search</Link>
-        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
-        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
+      <div data-testid="header-component" className="header-component">
+        <h1
+          data-testid="header-user-name"
+          className="header-user-name"
+        >
+          { checkLoading ? <Carregando /> : <p>{`Bem-vindo, ${userInfo?.name}!`}</p>}
+
+        </h1>
+        <Link
+          to="/search"
+          data-testid="link-to-search"
+          className="nav-input"
+        >
+          Pesquisa
+
+        </Link>
+        <Link
+          to="/favorites"
+          data-testid="link-to-favorites"
+          className="nav-input"
+        >
+          Favoritas
+
+        </Link>
+        <Link
+          to="/profile"
+          data-testid="link-to-profile"
+          className="nav-input"
+        >
+          Perfil
+
+        </Link>
       </div>
     );
   }

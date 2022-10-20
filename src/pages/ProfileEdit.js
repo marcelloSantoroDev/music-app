@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Carregando from '../services/Carregando';
 // import Carregando from '../services/Carregando';
 import { getUser, updateUser } from '../services/userAPI';
+import './ProfileEdit.css';
 
 const obj = {
   name: '',
@@ -70,45 +71,52 @@ export default class ProfileEdit extends Component {
     return (
       <div data-testid="page-profile-edit">
         <Header />
-        <form action="GET">
-          <input
-            type="text"
-            data-testid="edit-input-name"
-            onChange={ this.onInputChange }
-            value={ name }
-            name="name"
-          />
-          <input
-            type="text"
-            data-testid="edit-input-email"
-            onChange={ this.onInputChange }
-            value={ email }
-            name="email"
-          />
-          <input
-            type="text"
-            data-testid="edit-input-description"
-            onChange={ this.onInputChange }
-            value={ description }
-            name="description"
-          />
-          <input
-            type="text"
-            data-testid="edit-input-image"
-            onChange={ this.onInputChange }
-            value={ image }
-            name="image"
-          />
-          <button
-            type="button"
-            data-testid="edit-button-save"
-            disabled={ disable }
-            onClick={ this.handleClick }
-          >
-            Salvar
+        <div className="page-profile">
+          <h1>Editar Perfil</h1>
+          <form action="GET" className="form-edit">
+            <input
+              type="text"
+              data-testid="edit-input-name"
+              onChange={ this.onInputChange }
+              value={ name }
+              name="name"
+              placeholder="Nome"
+            />
+            <input
+              type="text"
+              data-testid="edit-input-email"
+              onChange={ this.onInputChange }
+              value={ email }
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              data-testid="edit-input-description"
+              onChange={ this.onInputChange }
+              value={ description }
+              name="description"
+              placeholder="Descrição"
+            />
+            <input
+              type="text"
+              data-testid="edit-input-image"
+              onChange={ this.onInputChange }
+              value={ image }
+              name="image"
+              placeholder="imagem"
+            />
+            <button
+              type="button"
+              data-testid="edit-button-save"
+              disabled={ disable }
+              onClick={ this.handleClick }
+            >
+              Salvar
 
-          </button>
-        </form>
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

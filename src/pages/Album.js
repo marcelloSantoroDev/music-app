@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Carregando from '../services/Carregando';
 import MusicCard from '../components/MusicCard';
+import './Album.css';
 
 const obj = {
   artistResponse: '',
@@ -35,17 +36,31 @@ export default class Album extends Component {
       return <Carregando />;
     }
     return (
-      <div data-testid="page-album">
+      <div data-testid="page-album" className="page-album">
         <Header />
-        <h1 data-testid="artist-name">{artistResponse[0].artistName}</h1>
-        <h2 data-testid="album-name">{artistResponse[0].collectionName}</h2>
-        {artistResponse
-          .filter((element) => element.trackName !== undefined)
-          .map((arg) => (<MusicCard
-            key={ arg.trackId }
-            object={ arg }
-            handleFavoriteFetch={ this.handleFavoriteFetch }
-          />))}
+        <div>
+          <h1
+            data-testid="artist-name"
+            className="album-title"
+          >
+            {artistResponse[0].artistName}
+
+          </h1>
+          <h2
+            data-testid="album-name"
+            className="album-title2"
+          >
+            {artistResponse[0].collectionName}
+
+          </h2>
+          {artistResponse
+            .filter((element) => element.trackName !== undefined)
+            .map((arg) => (<MusicCard
+              key={ arg.trackId }
+              object={ arg }
+              handleFavoriteFetch={ this.handleFavoriteFetch }
+            />))}
+        </div>
       </div>
     );
   }

@@ -1,0 +1,30 @@
+.page-album {
+  border: solid;
+  text-align: center;
+}
+
+.tracks {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.audio-component {
+  align-self: center;
+  border: 1px solid black;
+  border-radius: 100px;
+  margin-top: 5px;
+}
+
+.favoritar {
+  margin-top: 10px;
+}
+
+.album-title {
+  color: blue;
+  margin-bottom: -25px;
+}
+
+.album-title2 {
+  color: black;
+}

@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import Carregando from '../services/Carregando';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './Favorites.css';
 
 const obj = {
   favorites: [],
@@ -30,8 +31,9 @@ export default class extends Component {
       return <Carregando />;
     }
     return (
-      <div data-testid="page-favorites">
+      <div data-testid="page-favorites" className="page-favorites">
         <Header />
+        <h1>Favoritas</h1>
         {favorites
           .map((element) => (<MusicCard
             key={ element.trackId }

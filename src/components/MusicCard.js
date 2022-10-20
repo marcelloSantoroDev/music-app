@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Carregando from '../services/Carregando';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../pages/Album.css';
 
 const obj = {
   loading: false,
@@ -52,9 +53,14 @@ export default class MusicCard extends Component {
       return <Carregando />;
     }
     return (
-      <li>
-        <span>{trackName}</span>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
+      <li className="tracks">
+        <h3>{trackName}</h3>
+        <audio
+          data-testid="audio-component"
+          className="audio-component"
+          src={ previewUrl }
+          controls
+        >
           <track kind="captions" />
           O seu navegador não suporta o elemento
           {' '}
@@ -63,13 +69,13 @@ export default class MusicCard extends Component {
           .
         </audio>
         <label htmlFor="Favorita">
-          Favorita
+          Favoritar
           <input
             type="checkbox"
             name="Favorita"
             data-testid={ `checkbox-music-${trackId}` }
             onClick={ this.handleFetch }
-            id="Favorita"
+            className="favoritar"
             defaultChecked={ checkInput }
           />
         </label>
