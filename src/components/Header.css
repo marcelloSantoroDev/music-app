@@ -9,7 +9,7 @@
 }
 
 .header-user-name {
-  color: white;
+  color: rgba(255, 255, 255, 0.733);
   text-align: center;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .nav-input {
-  color: white;
+  color: rgba(255, 255, 255, 0.733);
   line-height: 50px;
   text-align: center;
   text-decoration: none;
