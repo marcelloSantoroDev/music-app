@@ -1,13 +1,10 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# PROJETO TRYBETUNES (REALIZADO NA TRYBE)
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+<h1>Music App</h1>
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+<p>Neste projeto, desenvolvi uma aplicação de música, utilizando o React e fazendo requisições para a Api do Itunes.</p>
+
+<p>Veja sua aparência e funcionalidades pelo meu perfil do <a href='https://www.linkedin.com/feed/update/urn:li:activity:6989273347972820992/'>Linkedin</a></p>
+
+
+
