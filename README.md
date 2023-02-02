@@ -1,10 +1,29 @@
-# PROJETO TRYBETUNES (REALIZADO NA TRYBE)
+# Music App
 
-<h1>Music App</h1>
+Esta é uma aplicação de música desenvolvida com React e Redux. Com esta aplicação, você pode buscar por músicas, artistas e álbuns e ouvir amostras de suas músicas favoritas.
 
-<p>Neste projeto, desenvolvi uma aplicação de música, utilizando o React e fazendo requisições para a Api do Itunes.</p>
+## Instalação
 
-<p>Veja sua aparência e funcionalidades pelo meu perfil do <a href='https://www.linkedin.com/feed/update/urn:li:activity:6989273347972820992/'>Linkedin</a></p>
+1. Clone este repositório com `git clone https://github.com/marcelloSantoroDev/music-app.git`
 
+```bash
+git clone https://github.com/marcelloSantoroDev/music-app.git
+```
 
+2. Entre na pasta do projeto com `cd music-app`
 
+```bash
+cd music-app
+```
+
+3. Instale as dependências com `npm install`
+
+```bash
+npm install
+```
+
+4. Inicie o projeto com `npm start`
+
+```bash
+npm start
+```
